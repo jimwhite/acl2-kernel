@@ -17,11 +17,11 @@ jupyter_client = "^8.6.0"
 ipython = "^8.26.0"
 regex = "^2024.7.24"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 jupyter = "^1.1.1"
 python-lsp-server = "^1.13.0"
 autopep8 = "^2.3.1"
 
 [build-system]
-requires = ["poetry>=2"]
-build-backend = "poetry.masonry.api"
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
