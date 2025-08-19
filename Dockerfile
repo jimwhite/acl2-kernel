@@ -10,19 +10,21 @@ RUN ls /work/ && poetry build
 #
 # Build Jupyter environment
 #
-FROM jupyter/minimal-notebook:04f7f60d34a6
+FROM acl2-jupyter:latest
 
 # ACL2
 
-ENV ACL2_VER=8.4 LISP=sbcl
+ENV ACL2_VER=8.6 LISP=sbcl
 
-USER root
-RUN apt-get update && apt-get install -y ${LISP} && apt-get clean && rm -rf /var/lib/apt/lists/*
+# USER root
+# RUN apt-get update && apt-get install -y ${LISP} && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-USER jovyan
-WORKDIR /home/jovyan/work
-RUN wget -q -O- https://github.com/acl2/acl2/archive/${ACL2_VER}.tar.gz | tar -zxf - \
-    && make -C "${PWD}/acl2-${ACL2_VER}" -j 2 LISP=${LISP}
+# USER jovyan
+# WORKDIR /home/jovyan/work
+# # https://github.com/acl2/acl2/archive/refs/tags/8.6.tar.gz
+# RUN wget -q https://github.com/acl2/acl2/archive/refs/tags/${ACL2_VER}.tar.gz \
+#     && tar -zxf ${ACL2_VER}.tar.gz \
+#     && make -C "${PWD}/acl2-${ACL2_VER}" -j 2 LISP=${LISP}
 
 # ACL2 Kernel
 
